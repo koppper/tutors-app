@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Timer from "../timer";
+import './parent-component.css';
 
 class ParentComponent extends Component {
     state = { hasError: false };
@@ -19,7 +20,7 @@ class ParentComponent extends Component {
         }
 
         return (
-            <div>
+            <div className="parent-component">
                 <h1>Parent Component</h1>
                 <Timer onCauseError={this.causeError} />
             </div>

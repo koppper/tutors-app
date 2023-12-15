@@ -1,0 +1,20 @@
+.parent-component {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+    background-color: #fff;
+    max-width: 300px;
+}
+
+.parent-component h1 {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    font-weight: bold;
+}
