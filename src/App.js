@@ -6,19 +6,19 @@ import Header from './components/header';
 import AddTutorForm from './components/add-tutor-form';
 import Search from './components/search'
 import Footer from './components/footer';
+import ParentComponent from "./components/parent-component";
 
 const App = () => {
     const mockTutors = [
         { id: 1, name: "Иван Иванов" },
         { id: 2, name: "Мария Петрова" },
         { id: 3, name: "Алексей Сидоров" },
-        // Другие моковые данные
     ];
 
-    const [tutors, setTutors] = useState(mockTutors); // Использование mockTutors как начального значения
+    const [tutors, setTutors] = useState(mockTutors);
     const [isFormVisible, setIsFormVisible] = useState(false);
     const [editingTutor, setEditingTutor] = useState(null);
-    const [allTutors, setAllTutors] = useState(mockTutors); // Сохраняем все данные о репетиторах
+    const [allTutors, setAllTutors] = useState(mockTutors);
 
     const handleDelete = (id) => {
         const updatedTutors = tutors.filter(tutor => tutor.id !== id);
@@ -66,7 +66,9 @@ const App = () => {
                     {editingTutor && <EditTutorForm tutor={editingTutor} onTutorUpdated={handleEdit} />}
                     <Search onSearch={handleSearch} />
                     <TutorList tutors={tutors} onEdit={startEdit} onDelete={handleDelete} />
-                        <Footer />
+                    <ParentComponent />
+
+                    <Footer />
                 </div>
             </div>
         </div>
@@ -74,5 +76,3 @@ const App = () => {
 };
 
 export default App;
-
-
