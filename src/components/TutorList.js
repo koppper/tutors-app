@@ -1,5 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Link} from "react-router-dom";
+
 
 const TutorList = ({ tutors, onEdit, onDelete }) => {
     return (
@@ -9,10 +11,20 @@ const TutorList = ({ tutors, onEdit, onDelete }) => {
                 {tutors.map(tutor => (
                     <div key={tutor.id} className="col-md-4 mb-4">
                         <div className="card">
-                            <div className="card-body">
+                            {tutor.imageUrl && (
+                                <img
+                                    src={`/images/${tutor.imageUrl}`}
+                                    className="card-img-top"
+                                    alt={tutor.name}
+                                    style={{ height: '300px', objectFit: 'cover' }}
+                                />
+                            )}
+
+                            <div className="card-body text-center">
                                 <h5 className="card-title">{tutor.name}</h5>
-                                <button onClick={() => onEdit(tutor)} className="btn btn-secondary btn-sm mr-5">Изменить</button>
-                                <button onClick={() => onDelete(tutor.id)} className="btn btn-danger btn-sm">Удалить</button>
+                                <Link to={`/tutors/${tutor.id}`} className="btn btn-primary btn-sm ml-2">Посмотреть</Link>
+                                <button onClick={() => onEdit(tutor)} className="btn btn-secondary btn-sm ml-2">Изменить</button>
+                                <button onClick={() => onDelete(tutor.id)} className="btn btn-danger btn-sm ml-2">Удалить</button>
                             </div>
                         </div>
                     </div>
