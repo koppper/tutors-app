@@ -21,7 +21,8 @@ const TutorList = ({ tutors, onEdit, onDelete }) => {
                             )}
 
                             <div className="card-body text-center">
-                                <h5 className="card-title">{tutor.name}</h5>
+                                <h4 className="card-title">{tutor.name}</h4>
+                                <h5 className="card-title">{tutor.category}</h5>
                                 <Link to={`/tutors/${tutor.id}`} className="btn btn-primary btn-sm ml-2">Посмотреть</Link>
                                 <button onClick={() => onEdit(tutor)} className="btn btn-secondary btn-sm ml-2">Изменить</button>
                                 <button onClick={() => onDelete(tutor.id)} className="btn btn-danger btn-sm ml-2">Удалить</button>

@@ -4,3 +4,31 @@
     border: 1px solid #dee2e6;
     padding: 10px;
 }
+
+/* tutorProfile.css */
+
+.tutor-profile {
+    background-image: url('profile2.png');  /* Adjust the path accordingly */
+    background-size: cover;
+    background-position: center;
+    color: blue;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.tutor-profile h2 {
+    color: black;
+}
+
+.tutor-profile img {
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+}
+.larger-btn {
+    font-size: 1.2em;
+    padding: 15px 30px;
+}
+

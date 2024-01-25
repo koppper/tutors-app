@@ -1,3 +1,3 @@
-import Contact from "./contact";
+import TutorsAdd from "./tutorsAdd";
 
-export default Contact;
+export default TutorsAdd;

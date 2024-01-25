@@ -10,13 +10,58 @@ import ParentComponent from './components/parent-component';
 import TutorProfile from './components/tutor-profile';
 import Home from './components/home';
 import About from './components/about';
-import Contact from './components/contact';
+import TutorsAdd from './components/contact';
 
 const App = () => {
     const mockTutors = [
-        { id: 1, name: "Иван Иванов", imageUrl: "ivan.jpg", hasError: false },
-        { id: 2, name: "Мария Петрова", imageUrl: "maria.jpg", hasError: false },
-        { id: 3, name: "Алексей Сидоров", imageUrl: "alexey.jpg", hasError: false },
+        {
+            id: 1,
+            name: "Иван Иванов",
+            imageUrl: "ivan.jpg",
+            hasError: false,
+            category: "Математика",
+            description: "Опытный репетитор по математике. Помогает ученикам построить крепкое основание."  // Описание
+        },
+        {
+            id: 2,
+            name: "Мария Петрова",
+            imageUrl: "maria.jpg",
+            hasError: false,
+            category: "Английский",
+            description: "Страстный преподаватель английского языка и литературы. Адаптирует уроки под индивидуальные потребности."
+        },
+        {
+            id: 3,
+            name: "Алексей Сидоров",
+            imageUrl: "alexei.jpg",
+            hasError: false,
+            category: "Физика",
+            description: "Энтузиаст по физике с умением делать сложные концепции понятными и интересными."
+        },
+        {
+            id: 4,
+            name: "Екатерина Новикова",
+            imageUrl: "ekaterina.jpg",
+            hasError: false,
+            category: "Химия",
+            description: "Профессиональный репетитор по химии. Развивает любовь к науке через интересные эксперименты."
+        },
+        {
+            id: 5,
+            name: "Дмитрий Смирнов",
+            imageUrl: "dmitry.jpg",
+            hasError: false,
+            category: "История",
+            description: "Захватывающий рассказчик и репетитор по истории. Способствует глубокому пониманию прошлого."
+        },
+        {
+            id: 6,
+            name: "Анна Кузнецова",
+            imageUrl: "anna.jpg",
+            hasError: false,
+            category: "Литература",
+            description: "Литературный критик и репетитор по литературе. Помогает раскрывать творческий потенциал."
+        },
     ];
 
     const [tutors, setTutors] = useState(mockTutors);
@@ -27,6 +72,7 @@ const App = () => {
         const updatedTutors = tutors.filter((tutor) => tutor.id !== id);
         setTutors(updatedTutors);
     };
+
 
     const handleSearch = (searchTerm) => {
         const filteredTutors = mockTutors.filter((tutor) =>
@@ -47,10 +93,27 @@ const App = () => {
         setEditingTutor(null);
     };
 
+
     const handleAdd = (newTutor) => {
-        const updatedTutors = [...tutors, { ...newTutor, id: Date.now() }];
-        setTutors(updatedTutors);
+        const formData = new FormData();
+        formData.append('name', newTutor.name);
+        formData.append('category', newTutor.category);
+        formData.append('description', newTutor.description);
+        formData.append('image', newTutor.image);
+
+        fetch('http://localhost:3000/tutors', {
+            method: 'GET',
+            body: formData,
+        })
+            .then(response => response.json())
+            .then(data => {
+            })
+            .catch(error => {
+            });
+
+        setTutors([...tutors, { ...newTutor, id: Date.now() }]);
     };
+
 
     const toggleForm = () => {
         setIsFormVisible(!isFormVisible);
@@ -60,6 +123,7 @@ const App = () => {
         <div>
             <Router>
                 <div>
+
                     <nav className="navbar navbar-expand-lg navbar-light bg-light">
                         <Link to="/" className="navbar-brand">TUTORS APP</Link>
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,22 +133,22 @@ const App = () => {
                             <ul className="navbar-nav">
                                 <li className="nav-item">
                                     <Link to="/" className="nav-link">
-                                        Home
+                                        Главное
                                     </Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link to="/about" className="nav-link">
-                                        About
+                                        О нас
                                     </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to="/contact" className="nav-link">
-                                        Contact
+                                    <Link to="/tutors/add" className="nav-link">
+                                        Добавить репетитора
                                     </Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link to="/tutors" className="nav-link">
-                                        Tutors
+                                        Репетиторы
                                     </Link>
                                 </li>
                             </ul>
@@ -94,7 +158,10 @@ const App = () => {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/about" element={<About />} />
-                        <Route path="/contact" element={<Contact />} />
+                        <Route
+                            path="/tutors/add"
+                            element={<TutorsAdd onAddTutor={handleAdd} />}
+                        />
                         {mockTutors.map((tutor) => (
                             <Route
                                 key={tutor.id}
@@ -120,7 +187,6 @@ const App = () => {
                                         onEdit={startEdit}
                                         onDelete={handleDelete}
                                     />
-                                    <ParentComponent tutors={tutors} />
 
                                     <Footer />
                                 </div>

@@ -1,0 +1,13 @@
+.home-container {
+    background-image: url('desktop2.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+}
+
+.text-block {
+    margin-right: 200px;
+    margin-left: 200px;
+}
