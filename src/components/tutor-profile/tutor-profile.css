@@ -12,10 +12,11 @@
     background-size: cover;
     background-position: center;
     color: blue;
-    padding: 20px;
+    padding: 50px;
     text-align: center;
     border-radius: 10px;
     margin-bottom: 20px;
+    margin-top: 100px;
 }
 
 .tutor-profile h2 {
@@ -31,4 +32,3 @@
     font-size: 1.2em;
     padding: 15px 30px;
 }
-
